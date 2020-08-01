@@ -10,7 +10,7 @@ FunLinkedListStack was developed in c language to demonstrate how a globally or 
 
 # Features!
 
-Menu options include for both global and local stacks to display, push elements, pop elements, check if stack is full, check stack top, and finally look at a position under the stack! 
+Menu options include for both global and local stacks to display, push elements, pop elements, check if stack is full, check stack top, and finally look at a position under the stack!
 
 ### Tech
 

@@ -2,20 +2,21 @@
 #include <stdio.h>
 #include <limits.h>
 #include "func.h"
-struct Node* global=NULL;
+struct Node *global = NULL;
 
-int main(){
-    
+int main()
+{
+
     //welcome to this prog
     int input, localsize, ret;
     printf("\nWelcome to Fun Fun Linked List Stack. Demonstrating Knowledge of Linked Lists Stacks.\n");
     printf("To start, let's create two linked lists stacks (one global and one local).\n");
-   
+
     //create global and local linked list
     globallist();
     int globalsize = count(global);
-    struct Node *local = (struct Node *)malloc(sizeof(struct Node)); 
-    
+    struct Node *local = (struct Node *)malloc(sizeof(struct Node));
+
     printf("\nEnter the size of the desired local linked list stack: ");
     ret = scanf("%d", &localsize);
     if (localsize < 1 || localsize > INT_MAX || ret != 1)
@@ -27,29 +28,26 @@ int main(){
         ret = scanf("%d", &input);
         if (ret != 1 || input > INT_MAX)
             input = reprompt(2); //2 flag for int only
-        if(i == 0)
+        if (i == 0)
             local->data = input; //first node set
         else
-            push_local(&local,input);//ptr to ptr funct
-    
+            push_local(&local, input); //ptr to ptr funct
     }
 
     //display the lists to the user
     printf("\nThis is your global linked list stack: ");
     display(global);
-    printf("global has %d nodes.",count(global));
+    printf("global has %d nodes.", count(global));
     printf("This is your local linked list stack: ");
     display_local(local);
-    printf("local has %d nodes.",count(local));
-    
-    
+    printf("local has %d nodes.", count(local));
 
     //prompt user for what they would like to do with the linked list stacks
     do
     {
         printf("\nWhat Do You Want to Do with the Linked List Stacks?\n");
         printf("1.  Display global stack\n");
-        printf("2.  Display local stack\n");        
+        printf("2.  Display local stack\n");
         printf("3.  Push to global stack\n");
         printf("4.  Push to local stack\n");
         printf("5.  Pop from global stack\n");
@@ -70,93 +68,127 @@ int main(){
             input = reprompt(5); //flag#5 for 1-15 choices
         switch (input)
         {
-        
+
         case 1:
             printf("Display global\n");
-            printf("Global Stack: ");display(global);
-            printf("Press any key to continue: ");getchar();getchar();
+            printf("Global Stack: ");
+            display(global);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 2:
             printf("Display local\n");
-            printf("Local Stack: ");display_local(local);
-            printf("Press any key to continue: ");getchar();getchar();
+            printf("Local Stack: ");
+            display_local(local);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 3:
             printf("Push global");
-            pushMenu(&global,globalsize,1);
-            printf("Global Stack: ");display(global);
-            printf("Press any key to continue: ");getchar();getchar();
+            pushMenu(&global, globalsize, 1);
+            printf("Global Stack: ");
+            display(global);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 4:
             printf("Push local");
-            pushMenu(&local,localsize,2);
-            printf("Local Stack: ");display_local(local);
-            printf("Press any key to continue: ");getchar();getchar();
+            pushMenu(&local, localsize, 2);
+            printf("Local Stack: ");
+            display_local(local);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 5:
             printf("Pop global");
-            popMenu(&global,1);
-            printf("Global Stack: ");display(global);
-            printf("Press any key to continue: ");getchar();getchar();
+            popMenu(&global, 1);
+            printf("Global Stack: ");
+            display(global);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 6:
             printf("Pop local");
-            popMenu(&local,2);
-            printf("Local Stack: ");display_local(local);
-            printf("Press any key to continue: ");getchar();getchar();
+            popMenu(&local, 2);
+            printf("Local Stack: ");
+            display_local(local);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 7:
             printf("Global empty?");
-            isEmptyMenu(global,1);
-            printf("Press any key to continue: ");getchar();getchar();
+            isEmptyMenu(global, 1);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 8:
             printf("Local empty?");
-            isEmptyMenu(local,2);
-            printf("Press any key to continue: ");getchar();getchar();
+            isEmptyMenu(local, 2);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 9:
             printf("Global full?");
-            isFullMenu(global,globalsize,1);
-            printf("Press any key to continue: ");getchar();getchar();
+            isFullMenu(global, globalsize, 1);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 10:
             printf("Local full?");
-            isFullMenu(local,localsize,2);
-            printf("Press any key to continue: ");getchar();getchar();
+            isFullMenu(local, localsize, 2);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 11:
             printf("Look at top of global");
-            stackTopMenu(global,1);
-            printf("Press any key to continue: ");getchar();getchar();
+            stackTopMenu(global, 1);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 12:
             printf("Look at top of local");
-            stackTopMenu(local,2);
-            printf("Press any key to continue: ");getchar();getchar();
+            stackTopMenu(local, 2);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 13:
             printf("Look under global");
-            peekMenu(global,globalsize,1);
-            printf("Press any key to continue: ");getchar();getchar();
+            peekMenu(global, globalsize, 1);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 14:
             printf("Look under local");
-            peekMenu(local,localsize,2);
-            printf("Press any key to continue: ");getchar();getchar();
+            peekMenu(local, localsize, 2);
+            printf("Press any key to continue: ");
+            getchar();
+            getchar();
             fflush(stdin);
             break;
         case 15:
@@ -168,4 +200,3 @@ int main(){
     } while (input != 15);
     return 0;
 }
-    

@@ -3,7 +3,7 @@
 #include <limits.h>
 #include "func.h"
 
-extern struct Node* global;
+extern struct Node *global;
 
 int count(struct Node *p)
 {
@@ -17,146 +17,168 @@ int count(struct Node *p)
 }
 
 //don't need to pass anything to display globals list
-void display(){
-    
+void display()
+{
+
     //need a reference to it, so we aren't actually moving global ptr
     struct Node *p;
     p = global;
-    
-    while(p){
-        printf("%d ",p->data);
+
+    while (p)
+    {
+        printf("%d ", p->data);
         p = p->next;
     }
     printf("\n");
 }
 //not changing anything, so just pick up the ptr here
-void display_local(struct Node *p){
-    
-    while(p){
-        printf("%d ",p->data);
+void display_local(struct Node *p)
+{
+
+    while (p)
+    {
+        printf("%d ", p->data);
         p = p->next;
     }
     printf("\n");
 }
-int isEmpty(){
-   if(count(global)==0)
-       return 1;
-    else
-        return 0;
-}
-int isEmpty_local(struct Node *p){
-    if(count(p)==0)
+int isEmpty()
+{
+    if (count(global) == 0)
         return 1;
     else
         return 0;
 }
-int isFull(int size){
-    if(count(global) >= size )
+int isEmpty_local(struct Node *p)
+{
+    if (count(p) == 0)
         return 1;
     else
         return 0;
 }
-int isFull_local(struct Node *p, int size){
-    if(count(p) >= size)
+int isFull(int size)
+{
+    if (count(global) >= size)
         return 1;
     else
         return 0;
 }
-int stackTop(){
-    if(isEmpty()){
+int isFull_local(struct Node *p, int size)
+{
+    if (count(p) >= size)
+        return 1;
+    else
+        return 0;
+}
+int stackTop()
+{
+    if (isEmpty())
+    {
         return -1;
     }
     else
         return global->data;
 }
-int stackTop_local(struct Node *p){
-    if(isEmpty(p)){
+int stackTop_local(struct Node *p)
+{
+    if (isEmpty(p))
+    {
         return -1;
     }
     else
         return p->data;
 }
 
-void push(int x){
-        struct Node *t = (struct Node*)malloc(sizeof(struct Node));
-        t->data = x; //save data to new node
-        t->next= global; //old top is now t->next (insert on left)
-        global = t; //global is now t
-    
+void push(int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    t->data = x;      //save data to new node
+    t->next = global; //old top is now t->next (insert on left)
+    global = t;       //global is now t
 }
-void push_local(struct Node **p, int x){
-        struct Node *t = (struct Node*)malloc(sizeof(struct Node));
-        t->data = x; //save data to new node
-        t->next= *p; //old global is now t->next (insert on left)
-        *p = t; //global is now t
-
+void push_local(struct Node **p, int x)
+{
+    struct Node *t = (struct Node *)malloc(sizeof(struct Node));
+    t->data = x;  //save data to new node
+    t->next = *p; //old global is now t->next (insert on left)
+    *p = t;       //global is now t
 }
 
-int pop(){
+int pop()
+{
     int x;
     //create new node
     struct Node *t;
-    if(isEmpty())
+    if (isEmpty())
         x = -1; //empty
-    else{
-        t = global; //temp ptr to pt to top of stack
+    else
+    {
+        t = global;            //temp ptr to pt to top of stack
         global = global->next; // move top to next node on stack
-        x = t->data; //temp ptr save data
-        free(t); //free node pted to by t
+        x = t->data;           //temp ptr save data
+        free(t);               //free node pted to by t
     }
     return x;
 }
-int pop_local(struct Node **p){
+int pop_local(struct Node **p)
+{
     int x;
     //create new node
     struct Node *t;
-    if(isEmpty_local((*p)))
-        x =-1; //empty
-    else{
-        t = *p; //temp ptr to pt to top of stack
+    if (isEmpty_local((*p)))
+        x = -1; //empty
+    else
+    {
+        t = *p;          //temp ptr to pt to top of stack
         *p = (*p)->next; // move top to next node on stack
-        x = t->data; //temp ptr save data
-        free(t); //free node pted to by t
+        x = t->data;     //temp ptr save data
+        free(t);         //free node pted to by t
     }
     return x;
 }
 
-int peek(int size, int pos){
-    
+int peek(int size, int pos)
+{
+
     int x = -1;
     //check if invalid pos
-    if(pos < 0 || pos > size){
+    if (pos < 0 || pos > size)
+    {
         printf("Invalid Position\n");
         return x;
     }
-    
+
     //iterate to position and return the data
     struct Node *t = global;
-    for(int i = 1; i < pos; i++){
+    for (int i = 1; i < pos; i++)
+    {
         t = t->next;
     }
-    x = t->data; 
+    x = t->data;
 
     return x;
 }
 
-int peek_local(struct Node *p, int size, int pos){
-    
+int peek_local(struct Node *p, int size, int pos)
+{
+
     int x = -1;
     //check if invalid pos
-    if(pos < 0 || pos > size){
+    if (pos < 0 || pos > size)
+    {
         printf("Invalid Position\n");
         return x;
     }
 
     //iterate to position and return the data
-    for(int i = 1; i < pos; i++){
+    for (int i = 1; i < pos; i++)
+    {
         p = p->next;
     }
-    x = p->data; 
-    
+    x = p->data;
+
     return x;
-}  
+}
 
 int reprompt(int flag)
 {
